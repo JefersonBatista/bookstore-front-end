@@ -57,7 +57,12 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <Button type="submit" isLoading={isLoading} disabled={isLoading}>
+        <Button
+          type="submit"
+          isLoading={isLoading}
+          disabled={isLoading}
+          highlighted
+        >
           {isLoading ? "Carregando..." : "Entrar"}
         </Button>
       </Form>
