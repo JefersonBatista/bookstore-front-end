@@ -23,8 +23,8 @@ export default function Login() {
     requests
       .login(requestBody)
       .then((res) => {
-        const session = JSON.stringify(res.data);
-        localStorage.setItem("session", session);
+        const token = JSON.stringify(res.data);
+        localStorage.setItem("token", token);
         navigate("/carteira");
       })
       .catch((err) => {
