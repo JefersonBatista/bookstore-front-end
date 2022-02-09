@@ -14,5 +14,5 @@ const Button = styled.button`
   font-size: ${({ fontSize }) => fontSize || "20px"};
   color: ${({ highlighted }) => (highlighted ? "white" : "#fa9a42")};
 `;
-
+ 
 export default Button;
