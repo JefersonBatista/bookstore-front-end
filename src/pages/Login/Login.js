@@ -45,6 +45,7 @@ export default function Login() {
       >
         <Input
           placeholder="e-mail"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
