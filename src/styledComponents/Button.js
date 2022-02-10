@@ -9,7 +9,7 @@ const Button = styled.button`
   height: ${({ height }) => height || "60px"};
   border-radius: 15px;
   background-color: ${({ highlighted }) => (highlighted ? "#fa9a42" : "white")};
-
+  border: none;
   font-weight: bold;
   font-size: ${({ fontSize }) => fontSize || "20px"};
   color: ${({ highlighted }) => (highlighted ? "white" : "#fa9a42")};

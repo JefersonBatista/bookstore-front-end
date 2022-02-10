@@ -10,6 +10,10 @@ function signUp(newUser) {
   return axios.post(`${BASE_URL}/sign-up`, newUser);
 }
 
-const api = { signUp };
+function login(body) {
+  return axios.post(`${BASE_URL}/log-in`, body);
+}
+
+const api = { signUp, login };
 
 export default api;

@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import { Catalogue, Login, SignUp } from "./pages";
 
 export default function App() {
