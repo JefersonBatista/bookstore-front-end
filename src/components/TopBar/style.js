@@ -13,6 +13,7 @@ export const Header = styled.header`
   width: 100vw;
   padding: 15px 30px;
   box-shadow: 0 3px 3px 3px rgba(150, 150, 150, 0.25);
+  background-color: white;
 `;
 
 export const OptionsForLoggedOutUser = styled.div`
