@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Container from "../../styledComponents/Container.js";
-import Button from "../../styledComponents/Button";
-import Form from "../../styledComponents/Form";
-import Input from "../../styledComponents/Input";
-import Title from "../../styledComponents/Title";
+import { Container, Button, Form, Input, Title } from "../../styledComponents";
 import requests from "../../services/api";
 
 export default function Login() {
@@ -25,7 +21,7 @@ export default function Login() {
       .then((res) => {
         const token = JSON.stringify(res.data);
         localStorage.setItem("token", token);
-        navigate("/carteira");
+        navigate("/");
       })
       .catch((err) => {
         alert(
@@ -57,12 +53,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <Button
-          type="submit"
-          isLoading={isLoading}
-          disabled={isLoading}
-          highlighted
-        >
+        <Button type="submit" highlighted disabled={isLoading}>
           {isLoading ? "Carregando..." : "Entrar"}
         </Button>
       </Form>
