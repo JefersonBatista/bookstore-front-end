@@ -23,9 +23,10 @@ export default function Login() {
     requests
       .login(requestBody)
       .then((res) => {
-        const token = JSON.stringify(res.data);
-        localStorage.setItem("token", token);
-        navigate("/carteira");
+        const session = JSON.stringify(res.data);
+        console.log(res.data);
+        localStorage.setItem("session", session);
+        navigate("/catalogue");
       })
       .catch((err) => {
         alert(
