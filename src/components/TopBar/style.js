@@ -15,8 +15,20 @@ export const Header = styled.header`
   box-shadow: 0 3px 3px 3px rgba(150, 150, 150, 0.25);
 `;
 
-export const Options = styled.div`
+export const OptionsForLoggedOutUser = styled.div`
   display: flex;
   gap: 15px;
-  width: 350px;
+`;
+
+export const OptionsForLoggedInUser = styled.div`
+  display: flex;
+  gap: 30px;
+
+  span {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .icon {
+    cursor: pointer;
+  }
 `;
