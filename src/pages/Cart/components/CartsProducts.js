@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import ProductCard from "./ProductCard";
+import useCart from "../../../hooks/useCart";
 
-export default function CartsProducts({ cart, setCart }) {
+export default function CartsProducts() {
+  const { cart } = useCart();
+
   return (
     <section>
       <StyledTableHeaders>
@@ -9,22 +12,15 @@ export default function CartsProducts({ cart, setCart }) {
           <strong>Carrinho de compras</strong>
         </h1>
       </StyledTableHeaders>
-      <ul>
-        {cart.map(({ title, author, image, quantity, price, id }, index) => (
-          <ProductCard
-            key={index}
-            index={index}
-            title={title}
-            author={author}
-            image={image}
-            quantity={quantity}
-            price={Number(price).toFixed(2)}
-            id={id}
-            setCart={setCart}
-            cart={[...cart]}
-          />
-        ))}
-      </ul>
+      {cart.length ? (
+        <ul>
+          {cart.map((product, index) => (
+            <ProductCard key={index} index={index} product={product} c />
+          ))}
+        </ul>
+      ) : (
+        <></>
+      )}
     </section>
   );
 }

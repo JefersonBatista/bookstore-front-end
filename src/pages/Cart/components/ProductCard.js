@@ -2,31 +2,14 @@ import {
   AiFillPlusCircle as PlusCircle,
   AiFillMinusCircle as MinusCircle,
 } from "react-icons/ai";
-import { useState } from "react";
 import styled from "styled-components";
+import useCart from "../../../hooks/useCart";
 
-export default function ProductCard({
-  title,
-  author,
-  image,
-  quantity,
-  price,
-  id,
-  setCart,
-  cart,
-}) {
-  const totalPrice = "R$ " + (price.replace("R$", "") * quantity).toFixed(2);
-  function updateQuantity(newQuantity) {
-    const indexThisProduct = cart.findIndex((product) => product.id === id);
-    if (newQuantity === 0) {
-      cart.splice(indexThisProduct, 1);
-    } else {
-      cart[indexThisProduct].quantity = newQuantity;
-    }
-    setCart(cart);
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-
+export default function ProductCard({ product }) {
+  const { title, author, image, quantity, quantityInCart, price, _id } = product;
+  const totalPrice = "R$ " + (price * quantity).toFixed(2);
+  const { updateQuantity } = useCart();
+  const isAddAvailable = quantity > quantityInCart ? "initial" : "none";
   return (
     <StyledProductCard>
       <StyledProductInfo>
@@ -39,13 +22,16 @@ export default function ProductCard({
         </div>
       </StyledProductInfo>
       <StyledCounter>
-        <button onClick={() => updateQuantity(quantity - 1)}>
+        <button onClick={() => updateQuantity(quantityInCart - 1, _id)}>
           <MinusCircle style={styleButtonIcon} />
         </button>
         <h1>
-          <strong>{quantity}</strong>
+          <strong>{quantityInCart}</strong>
         </h1>
-        <button onClick={() => updateQuantity(quantity + 1)}>
+        <button
+          onClick={() => updateQuantity(quantityInCart + 1, _id)}
+          style={{ display: isAddAvailable }}
+        >
           <PlusCircle style={styleButtonIcon} />
         </button>
       </StyledCounter>
