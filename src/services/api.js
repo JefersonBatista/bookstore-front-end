@@ -4,7 +4,7 @@ const BASE_URL =
   process.env.REACT_APP_API_URL === "dev"
     ? "http://localhost:5000"
     : "https://bookstore390.herokuapp.com";
-    
+
 function createAuth(token) {
   return { headers: { Authorization: `Bearer ${token}` } };
 }
@@ -17,6 +17,10 @@ function login(body) {
   return axios.post(`${BASE_URL}/log-in`, body);
 }
 
-const api = { signUp, login };
+function logout(token) {
+  return axios.delete(`${BASE_URL}/sessions`, createAuth(token));
+}
+
+const api = { signUp, login, logout };
 
 export default api;
