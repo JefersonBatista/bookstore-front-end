@@ -17,10 +17,14 @@ function login(body) {
   return axios.post(`${BASE_URL}/log-in`, body);
 }
 
+function logout(token) {
+  return axios.delete(`${BASE_URL}/sessions`, createAuth(token));
+}
+
 function getProducts() {
   return axios.get(`${BASE_URL}/products`);
 }
 
-const api = { signUp, login, getProducts };
+const api = { signUp, login, logout, getProducts };
 
 export default api;
