@@ -38,4 +38,9 @@ export const Card = styled.article`
     font-size: 19px;
     color: #fa9a42;
   }
+
+  .cart-info {
+    font-size: 11px;
+    color: blue;
+  }
 `;
