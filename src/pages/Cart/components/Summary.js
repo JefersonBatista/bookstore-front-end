@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from "../../../styledComponents/Button";
-export default function Summary() {
+export default function Summary({ cart }) {
+  const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
   return (
     <StyledContainer>
       <h2>
@@ -12,7 +13,7 @@ export default function Summary() {
           <strong>Total</strong>
         </h1>
         <h1>
-          <strong>R$ 9,90</strong>
+          <strong>R$ {total}</strong>
         </h1>
       </div>
       <Button highlighted width={"150px"} height={"44px"}>
@@ -24,7 +25,7 @@ export default function Summary() {
 
 const StyledContainer = styled.section`
   padding: 30px;
-  h1{
+  h1 {
     font-family: "Roboto", sans-serif;
     color: #202124;
     font-size: 18px;

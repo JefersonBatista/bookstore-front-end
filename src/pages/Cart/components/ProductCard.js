@@ -12,34 +12,19 @@ export default function ProductCard({
   quantity,
   price,
   id,
+  setCart,
+  cart,
 }) {
-  const product = [
-    {
-      title: "Narnia",
-      author: "Lewis",
-      image:
-        "https://cdn.shopify.com/s/files/1/0024/1336/3273/products/CapaEnsinando-Trivium_2000x_9984771a-6ff8-451b-a48f-de846bb57692.jpg?v=1618518061",
-      quantity: 1,
-      price: 12,
-      id: 1,
-    },
-  ];
-  const [quantityInCart, setQuantityInCart] = useState(quantity);
-  const cartProducts = JSON.parse(localStorage.getItem("cart"));
-  const totalPrice =
-    "R$ " + (price.replace("R$", "") * quantityInCart).toFixed(2);
+  const totalPrice = "R$ " + (price.replace("R$", "") * quantity).toFixed(2);
   function updateQuantity(newQuantity) {
-    const indexThisProduct = cartProducts.findIndex(
-      (product) => product.id === id
-    );
+    const indexThisProduct = cart.findIndex((product) => product.id === id);
     if (newQuantity === 0) {
-      cartProducts.splice(indexThisProduct, 1);
-      console.log(cartProducts);
-      localStorage.setItem("cart", JSON.stringify(cartProducts));
-      return;
+      cart.splice(indexThisProduct, 1);
+    } else {
+      cart[indexThisProduct].quantity = newQuantity;
     }
-    setQuantityInCart(newQuantity);
-    cartProducts[indexThisProduct].quantity = newQuantity;
+    setCart(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   return (
@@ -54,13 +39,13 @@ export default function ProductCard({
         </div>
       </StyledProductInfo>
       <StyledCounter>
-        <button onClick={() => updateQuantity(quantityInCart - 1)}>
+        <button onClick={() => updateQuantity(quantity - 1)}>
           <MinusCircle style={styleButtonIcon} />
         </button>
         <h1>
-          <strong>{quantityInCart}</strong>
+          <strong>{quantity}</strong>
         </h1>
-        <button onClick={() => updateQuantity(quantityInCart + 1)}>
+        <button onClick={() => updateQuantity(quantity + 1)}>
           <PlusCircle style={styleButtonIcon} />
         </button>
       </StyledCounter>
