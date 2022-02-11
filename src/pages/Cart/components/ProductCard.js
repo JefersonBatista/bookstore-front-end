@@ -13,6 +13,17 @@ export default function ProductCard({
   price,
   id,
 }) {
+  const product = [
+    {
+      title: "Narnia",
+      author: "Lewis",
+      image:
+        "https://cdn.shopify.com/s/files/1/0024/1336/3273/products/CapaEnsinando-Trivium_2000x_9984771a-6ff8-451b-a48f-de846bb57692.jpg?v=1618518061",
+      quantity: 1,
+      price: 12,
+      id: 1,
+    },
+  ];
   const [quantityInCart, setQuantityInCart] = useState(quantity);
   const cartProducts = JSON.parse(localStorage.getItem("cart"));
   const totalPrice =
@@ -21,9 +32,14 @@ export default function ProductCard({
     const indexThisProduct = cartProducts.findIndex(
       (product) => product.id === id
     );
+    if (newQuantity === 0) {
+      cartProducts.splice(indexThisProduct, 1);
+      console.log(cartProducts);
+      localStorage.setItem("cart", JSON.stringify(cartProducts));
+      return;
+    }
     setQuantityInCart(newQuantity);
     cartProducts[indexThisProduct].quantity = newQuantity;
-    localStorage.setItem("cart", JSON.stringify(cartProducts));
   }
 
   return (
@@ -113,6 +129,7 @@ const StyledProductCard = styled.li`
   display: flex;
   justify-content: space-between;
   margin: 16px 0;
+  padding-bottom: 16px;
   border-bottom: 1px solid grey;
 `;
 

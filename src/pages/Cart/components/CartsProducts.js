@@ -4,7 +4,6 @@ import ProductCard from "./ProductCard";
 export default function CartsProducts() {
   const cartProducts = JSON.parse(localStorage.getItem("cart"));
   return (
-    <StyledContainer>
       <section>
         <StyledTableHeaders>
           <h1>
@@ -28,19 +27,8 @@ export default function CartsProducts() {
           )}
         </ul>
       </section>
-    </StyledContainer>
   );
 }
-
-const StyledContainer = styled.div`
-  display: flex;
-  margin-top: 88px;
-  width: 100%;
-  padding: 8px 120px;
-  section:first-child {
-    width: 75%;
-  }
-`;
 
 const StyledTableHeaders = styled.div`
   display: flex;
