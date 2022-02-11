@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { FiShoppingCart, FiLogOut } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
 
 import { Button, Title } from "../../styledComponents";
 
@@ -8,6 +8,7 @@ import {
   OptionsForLoggedOutUser,
   OptionsForLoggedInUser,
 } from "./style";
+import LogoutButton from "../LogoutButton";
 
 export default function TopBar() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export default function TopBar() {
         <OptionsForLoggedInUser>
           <span>{username}</span>
           <FiShoppingCart className="icon" />
-          <FiLogOut className="icon" />
+          <LogoutButton token={session.token} navigate={navigate} />
         </OptionsForLoggedInUser>
       )}
     </Header>

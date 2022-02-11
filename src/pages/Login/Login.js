@@ -20,7 +20,6 @@ export default function Login() {
       .login(requestBody)
       .then((res) => {
         const session = JSON.stringify(res.data);
-        console.log(res.data);
         localStorage.setItem("session", session);
         navigate("/");
       })
