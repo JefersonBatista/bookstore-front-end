@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL =
   process.env.REACT_APP_API_URL === "dev"
-    ? "http://localhost:4000"
+    ? "http://localhost:5000"
     : "https://bookstore390.herokuapp.com";
 
 function createAuth(token) {

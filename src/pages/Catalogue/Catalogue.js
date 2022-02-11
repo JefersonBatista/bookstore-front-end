@@ -10,28 +10,23 @@ export default function Catalogue() {
   const [products, setProducts] = useState(null);
 
   async function getProducts() {
-    const response = await api.getProducts();
-    const productsData = [];
-
-    for (let i = 0; i < 5; i++) {
-      response.data.forEach((product) => {
-        productsData.push(product);
-      });
+    try {
+      const response = await api.getProducts();
+      setProducts(response.data);
+    } catch (error) {
+      alert(error.response.data);
     }
-
-    // setProducts(response.data);
-    setProducts(productsData);
   }
 
   useEffect(() => getProducts(), []);
 
   if (products === null) {
     return (
-      <section>
+      <Page>
         <TopBar />
 
-        <h1>Carregando...</h1>
-      </section>
+        <strong>Carregando...</strong>
+      </Page>
     );
   }
 
