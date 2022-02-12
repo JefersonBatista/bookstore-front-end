@@ -21,6 +21,10 @@ function logout(token) {
   return axios.delete(`${BASE_URL}/sessions`, createAuth(token));
 }
 
-const api = { signUp, login, logout };
+function getProducts() {
+  return axios.get(`${BASE_URL}/products`);
+}
+
+const api = { signUp, login, logout, getProducts };
 
 export default api;
