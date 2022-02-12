@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 
 import { Button, Title } from "../../styledComponents";
@@ -19,7 +19,9 @@ export default function TopBar() {
 
   return (
     <Header>
-      <Title>Bookstore</Title>
+      <Link to="/">
+        <Title>Bookstore</Title>
+      </Link>
 
       {loggedIn || (
         <OptionsForLoggedOutUser>
