@@ -33,13 +33,18 @@ export default function TopBar() {
           >
             Cadastrar-se
           </Button>
+          <button style={{ all: "unset" }} onClick={() => navigate("/cart")}>
+            <FiShoppingCart className="icon" />
+          </button>
         </OptionsForLoggedOutUser>
       )}
 
       {loggedIn && (
         <OptionsForLoggedInUser>
           <span>{username}</span>
-          <FiShoppingCart className="icon" />
+          <button style={{ all: "unset" }} onClick={() => navigate("/cart")}>
+            <FiShoppingCart className="icon" />
+          </button>
           <LogoutButton token={session.token} navigate={navigate} />
         </OptionsForLoggedInUser>
       )}

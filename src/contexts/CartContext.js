@@ -15,14 +15,18 @@ export function CartProvider({ children }) {
     }
     setCart(JSON.parse(storageCart));
   }, []);
+
   function addToCart(product) {
     const newCart = [...cart, { ...product, quantityInCart: 1 }];
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
   }
-  function updateQuantity({ newQuantity, id }) {
+
+  function updateQuantity(newQuantity, _id) {
     const newCart = [...cart];
-    const indexThisProduct = newCart.findIndex((product) => product.id === id);
+    const indexThisProduct = newCart.findIndex(
+      (product) => product._id === _id
+    );
     if (newQuantity === 0) {
       newCart.splice(indexThisProduct, 1);
     } else {
@@ -31,6 +35,7 @@ export function CartProvider({ children }) {
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
   }
+
   return (
     <CartContext.Provider
       value={{
