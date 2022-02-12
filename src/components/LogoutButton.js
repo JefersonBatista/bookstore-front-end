@@ -3,7 +3,6 @@ import requests from "../services/api";
 
 export default function LogoutButton({ token, navigate }) {
   function requestLogout() {
-    console.log("chegou");
     requests
       .logout(token)
       .then(() => {
