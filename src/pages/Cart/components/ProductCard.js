@@ -6,10 +6,16 @@ import styled from "styled-components";
 import useCart from "../../../hooks/useCart";
 
 export default function ProductCard({ product }) {
-  const { title, author, image, quantity, quantityInCart, price, _id } = product;
-  const totalPrice = "R$ " + (price * quantity).toFixed(2);
+  const { title, author, image, quantity, quantityInCart, price, _id } =
+    product;
+  const totalPrice =
+    "R$ " +
+    (price * quantityInCart).toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   const { updateQuantity } = useCart();
-  const isAddAvailable = quantity > quantityInCart ? "initial" : "none";
+  const isAddAvailable = quantity > quantityInCart ? "visible" : "hidden";
   return (
     <StyledProductCard>
       <StyledProductInfo>
@@ -30,7 +36,7 @@ export default function ProductCard({ product }) {
         </h1>
         <button
           onClick={() => updateQuantity(quantityInCart + 1, _id)}
-          style={{ display: isAddAvailable }}
+          style={{ visibility: isAddAvailable }}
         >
           <PlusCircle style={styleButtonIcon} />
         </button>
@@ -38,7 +44,13 @@ export default function ProductCard({ product }) {
       <StyledPrice>
         <h2>Preço</h2>
         <h1>
-          <strong>R$ {price}</strong>
+          <strong>
+            R${" "}
+            {price.toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </strong>
         </h1>
       </StyledPrice>
       <StyledPrice>

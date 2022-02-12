@@ -15,7 +15,7 @@ export default function CartsProducts() {
       {cart.length ? (
         <ul>
           {cart.map((product, index) => (
-            <ProductCard key={index} index={index} product={product} c />
+            <ProductCard key={index} product={product} />
           ))}
         </ul>
       ) : (

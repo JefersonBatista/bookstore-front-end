@@ -44,7 +44,9 @@ export default function CheckoutModal({ toggleModal, isOpen }) {
         </div>
         <div className="real-buttons">
           <button type="submit">Enviar</button>
-          <button onClick={toggleModal}>Cancelar</button>
+          <button type="button" onClick={toggleModal}>
+            Cancelar
+          </button>
         </div>
       </StyledForm>
     </Modal>

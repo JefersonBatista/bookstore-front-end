@@ -7,7 +7,10 @@ import useCart from "../../../hooks/useCart";
 export default function Summary() {
   const { cart } = useCart();
   const [modalIsOpen, setIsOpen] = useState(false);
-  const total = cart.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
+  const total = cart.reduce(
+    (acc, curr) => acc + curr.price * curr.quantityInCart,
+    0
+  );
   const session = localStorage.getItem("session");
   function toggleModal() {
     if (!session) return alert("Por favor conecte-se para continuar");
@@ -25,7 +28,13 @@ export default function Summary() {
           <strong>Total</strong>
         </h1>
         <h1>
-          <strong>R$ {total}</strong>
+          <strong>
+            R${" "}
+            {total.toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </strong>
         </h1>
       </div>
       <Button highlighted width={"150px"} height={"44px"} onClick={toggleModal}>
