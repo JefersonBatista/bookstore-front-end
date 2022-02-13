@@ -36,12 +36,18 @@ export function CartProvider({ children }) {
     localStorage.setItem("cart", JSON.stringify(newCart));
   }
 
+  function resetCart() {
+    localStorage.setItem("cart", []);
+    setCart([]);
+  }
+
   return (
     <CartContext.Provider
       value={{
         cart,
         updateQuantity,
         addToCart,
+        resetCart,
       }}
     >
       {children}

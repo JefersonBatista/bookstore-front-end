@@ -1,13 +1,16 @@
 import Modal from "react-modal";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import useCart from "../../../hooks/useCart";
 import api from "../../../services/api";
 
 export default function CheckoutModal({ toggleModal, isOpen }) {
-  const [paymentWay, setPaymentWay] = useState(0);
-  const { cart } = useCart();
+  const navigate = useNavigate();
+
+  const [paymentWay, setPaymentWay] = useState("");
+  const { cart, resetCart } = useCart();
 
   async function requestCheckout(e) {
     e.preventDefault();
@@ -23,6 +26,9 @@ export default function CheckoutModal({ toggleModal, isOpen }) {
 
     try {
       await api.checkout(purchase, token);
+
+      resetCart();
+      navigate("/");
     } catch (error) {
       alert(error.response.data);
     }
