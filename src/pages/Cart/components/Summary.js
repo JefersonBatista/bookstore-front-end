@@ -13,7 +13,7 @@ export default function Summary() {
   );
   const session = localStorage.getItem("session");
   function toggleModal() {
-    if (!session) return alert("Por favor conecte-se para continuar");
+    if (!session) return alert("Por favor, faça login para continuar");
     setIsOpen(!modalIsOpen);
   }
 

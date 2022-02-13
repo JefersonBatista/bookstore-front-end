@@ -1,17 +1,39 @@
 import Modal from "react-modal";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
 import useCart from "../../../hooks/useCart";
+import api from "../../../services/api";
 
 export default function CheckoutModal({ toggleModal, isOpen }) {
-  const [paymentWay, setPaymentWay] = useState(0);
-  const { cart } = useCart();
-  function requestCheckout(e) {
+  const navigate = useNavigate();
+
+  const [paymentWay, setPaymentWay] = useState("");
+  const { cart, resetCart } = useCart();
+
+  async function requestCheckout(e) {
     e.preventDefault();
+
     const { token } = JSON.parse(localStorage.getItem("session"));
-    console.log(cart);
-    console.log(token);
+    const purchase = {
+      items: cart.map((item) => ({
+        _id: item._id,
+        quantity: item.quantityInCart,
+      })),
+      paymentWay,
+    };
+
+    try {
+      await api.checkout(purchase, token);
+
+      resetCart();
+      navigate("/");
+    } catch (error) {
+      alert(error.response.data);
+    }
   }
+
   return (
     <Modal
       isOpen={isOpen}
@@ -24,22 +46,22 @@ export default function CheckoutModal({ toggleModal, isOpen }) {
         <div>
           <h2>Cartão de crédito</h2>
           <StyledOption
-            onClick={() => setPaymentWay(1)}
-            isSelected={paymentWay === 1}
+            onClick={() => setPaymentWay("credit card")}
+            isSelected={paymentWay === "credit card"}
           />
         </div>
         <div>
           <h2>Boleto</h2>
           <StyledOption
-            onClick={() => setPaymentWay(2)}
-            isSelected={paymentWay === 2}
+            onClick={() => setPaymentWay("billet")}
+            isSelected={paymentWay === "billet"}
           />
         </div>
         <div>
           <h2>Pix</h2>
           <StyledOption
-            onClick={() => setPaymentWay(3)}
-            isSelected={paymentWay === 3}
+            onClick={() => setPaymentWay("pix")}
+            isSelected={paymentWay === "pix"}
           />
         </div>
         <div className="real-buttons">

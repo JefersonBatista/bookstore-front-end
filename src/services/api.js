@@ -25,6 +25,10 @@ function getProducts() {
   return axios.get(`${BASE_URL}/products`);
 }
 
-const api = { signUp, login, logout, getProducts };
+function checkout(purchase, token) {
+  return axios.post(`${BASE_URL}/checkout`, purchase, createAuth(token));
+}
+
+const api = { signUp, login, logout, getProducts, checkout };
 
 export default api;
