@@ -8,7 +8,7 @@ export default function LogoutButton({ token, navigate }) {
       .then()
       .catch(() => {
         alert(
-          "Não foi possível desconectar, mas os dados foram apagados do navegador,verifique a conexão e tente logar novamente para deslogar e proteger sua conta"
+          "Não foi possível desconectar, mas os dados foram apagados do navegador,verifique a conexão e tente logar novamente para proteger sua conta"
         );
       });
     navigate("/");
