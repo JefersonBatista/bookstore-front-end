@@ -8,7 +8,7 @@ import {
   OptionsForLoggedOutUser,
   OptionsForLoggedInUser,
 } from "./style";
-import LogoutButton from "../LogoutButton";
+import LogoutButton from "./LogoutButton";
 
 export default function TopBar() {
   const navigate = useNavigate();
