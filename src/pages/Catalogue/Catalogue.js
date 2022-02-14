@@ -21,7 +21,6 @@ export default function Catalogue() {
 
   function productButtonText(id) {
     const productInCart = getProductInCart(id);
-
     if (productInCart) {
       return "Ir para o carrinho";
     } else {
@@ -47,7 +46,6 @@ export default function Catalogue() {
 
   function productButtonAction(product) {
     const productInCart = getProductInCart(product._id);
-
     if (productInCart) {
       return () => navigate("/cart");
     } else {
@@ -96,13 +94,16 @@ export default function Catalogue() {
           <span className="cart-info">{productCartInfo(product._id)}</span>
 
           <Button
-            highlighted
+            disabled={product.quantity < 1}
+            highlighted={product.quantity > 0}
             width="150px"
             height="40px"
             fontSize="14px"
             onClick={productButtonAction(product)}
           >
-            {productButtonText(product._id)}
+            {product.quantity > 0
+              ? productButtonText(product._id)
+              : "Sem estoque"}
           </Button>
         </Card>
       ))}
