@@ -32,7 +32,9 @@ export default function Login() {
   }
   return (
     <Container>
-      <Title>Bookstore</Title>
+      <Link to="/">
+        <Title>Bookstore</Title>
+      </Link>
       <Form
         onSubmit={(e) => {
           setIsLoading(true);

@@ -46,7 +46,9 @@ export default function SignUp() {
 
   return (
     <Container>
-      <Title>Bookstore</Title>
+      <Link to="/">
+        <Title>Bookstore</Title>
+      </Link>
 
       <Form onSubmit={handleSubmit}>
         <Input
