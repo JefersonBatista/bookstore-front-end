@@ -15,7 +15,7 @@ This app includes:
 
 ## Next Steps
 
-- A historic of purchases of the user
+- Not soon, a history of user's purchases
 
 ## Technologies
 
